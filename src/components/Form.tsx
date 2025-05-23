@@ -11,9 +11,7 @@ const Form = ({
 }) => {
   const [intro, setIntro] = useState("Hey! I'm Nabin Khanal.");
   const [username, setUsername] = useState("nabsk911");
-  const [coverURL, setCoverURl] = useState(
-    "https://media.giphy.com/media/2AYQQJsqDrDHy/giphy.gif?cid=ecf05e479zwtxz5mnjv6gs0noeeawug1sza4if454gxwdp76&ep=v1_gifs_related&rid=giphy.gif&ct=g"
-  );
+  const [coverURL, setCoverURl] = useState("https://i.imgur.com/geNGqFT.jpeg");
   const [aboutMe, setAboutMe] = useState(
     "I'm a passionate frontend developer who loves building sleek, responsive web apps. I enjoy working with React and TypeScript, and I'm currently diving deeper into system programming with C."
   );
@@ -134,7 +132,8 @@ const Form = ({
           onChange={(e) => setCoverURl(e.target.value)}
         />
         <p className="text-xs text-gray-500">
-          Tip: Use Giphy or Imgur for reliable hosting
+          Tip: Make sure the URL ends with .jpg, .png, .jpeg or .gif for proper
+          display.
         </p>
       </div>
 
