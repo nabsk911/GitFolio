@@ -13,7 +13,13 @@ const Form = ({
   const [username, setUsername] = useState("nabsk911");
   const [coverURL, setCoverURl] = useState("https://i.imgur.com/geNGqFT.jpeg");
   const [aboutMe, setAboutMe] = useState(
-    "I'm a passionate frontend developer who loves building sleek, responsive web apps. I enjoy working with React and TypeScript, and I'm currently diving deeper into system programming with C."
+    `I'm a frontend developer focused on building web experiences that are smooth and engaging. I enjoy taking designs and making them interactive and user-friendly. A lot of what I do involves bringing interfaces to life with fluid animations and subtle interactions, and I often use Motion for that.
+
+## Currently Learning
+
+-  Advanced animation techniques  
+-  Performance optimization strategies
+-  System programming with C`
   );
   const [skills, setSkills] = useState<Skill[]>([
     { name: "React", iconPath: "react/react-original.svg" },
@@ -126,7 +132,6 @@ const Form = ({
         <textarea
           id="cover-url"
           className="inputStyle resize-none"
-          rows={3}
           value={coverURL}
           placeholder="https://example.com/your-cover-image.gif"
           onChange={(e) => setCoverURl(e.target.value)}
@@ -145,13 +150,15 @@ const Form = ({
         <textarea
           id="about-me"
           className="inputStyle resize-none"
-          rows={4}
+          rows={8}
           value={aboutMe}
           placeholder="Tell visitors about yourself, your interests, and what you're working on..."
           onChange={(e) => setAboutMe(e.target.value)}
-          maxLength={500}
+          maxLength={1000}
         />
-        <p className="text-xs text-gray-500">{aboutMe.length}/500 characters</p>
+        <p className="text-xs text-gray-500">
+          {aboutMe.length}/1000 characters
+        </p>
       </div>
 
       {/* GitHub Activities */}
