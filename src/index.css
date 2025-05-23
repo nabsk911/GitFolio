@@ -1,0 +1,29 @@
+
+@import "tailwindcss";
+
+.labelStyle{
+    @apply block;
+}
+body{
+    @apply mx-8 my-4 bg-background text-foreground;
+}
+
+p[align="left"] img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.inputStyle{
+    @apply w-full px-3 py-2 border bg-input ring-ring border-border rounded-radius  placeholder-placeholder;
+}
+
+@theme {  
+    --radius-radius: 0.5rem; 
+    --color-background: oklch(0.13 0.03 262);
+    --color-foreground: oklch(0.985 0 0);
+    --color-placeholder: oklch(0.75 0.01 285);
+    --color-border: oklch(1 0 0 / 10%);
+    --color-muted: oklch(0.274 0.006 286.033);
+    --color-input: oklch(0.13 0.04 265);
+    --color-ring: oklch(0.552 0.016 285.938); 
+}
