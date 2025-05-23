@@ -24,11 +24,11 @@ export const markdownGenerator = function (
   }
 
   if (aboutMe.trim() !== "") {
-    md += `## 🧑‍💻 About Me\n\n${aboutMe}\n\n`;
+    md += `## About Me\n\n${aboutMe}\n\n`;
   }
 
   if (skills && skills.length > 0) {
-    md += `## 🛠️ Technical Skills\n\n<p align="left">\n`;
+    md += `## Technical Skills\n\n<p align="left">\n`;
     skills.forEach(({ name, iconPath }) => {
       md += `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${iconPath}" alt="${name}" title="${name}" width="40" height="40" />\n`;
     });
@@ -37,7 +37,7 @@ export const markdownGenerator = function (
 
   if (showMostUsedLanguage || showStats || showStreaks) {
     if (username) {
-      md += `## 📈 GitHub Activities\n\n`;
+      md += `## GitHub Activities\n\n`;
       md += `<table>\n`;
       md += `<tr>\n`;
       // Left column
@@ -45,12 +45,12 @@ export const markdownGenerator = function (
         md += `<td align="center" valign="top" width="50%">\n\n`;
       }
       if (showStats) {
-        md += `**📊 GitHub Stats**\n\n`;
+        md += `**GitHub Stats**\n\n`;
         md += `<img src="https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=onedark" alt="GitHub Stats" width="100%" />\n\n`;
       }
 
       if (showStreaks) {
-        md += `**🔥 GitHub Streak**\n\n`;
+        md += `**GitHub Streak**\n\n`;
         md += `<img src="https://streak-stats.demolab.com?user=${username}&theme=onedark" alt="GitHub Streak" width="100%" />\n\n`;
       }
 
@@ -59,7 +59,7 @@ export const markdownGenerator = function (
       if (showMostUsedLanguage) {
         // Right column
         md += `<td align="center" valign="top" width="50%">\n\n`;
-        md += `**📚 Top Languages**\n\n`;
+        md += `**Top Languages**\n\n`;
         md += `<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&theme=onedark" alt="Top Languages" width="100%" />\n\n`;
       }
 
