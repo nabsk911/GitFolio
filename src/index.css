@@ -1,9 +1,5 @@
-
 @import "tailwindcss";
 
-.labelStyle{
-    @apply block;
-}
 body{
     @apply mx-8 my-4 bg-background text-foreground;
 }
@@ -16,6 +12,10 @@ p[align="left"] img {
 .inputStyle{
     @apply w-full px-3 py-2 border bg-input ring-ring border-border rounded-radius  placeholder-placeholder;
 }
+.checkboxLabel {
+  @apply flex items-center cursor-pointer space-x-2 bg-background border border-border px-2 py-1 rounded-radius;
+}
+
 
 @theme {  
     --radius-radius: 0.5rem; 

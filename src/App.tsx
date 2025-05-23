@@ -10,7 +10,7 @@ const App = () => {
   return (
     <div className="w-full overflow-hidden space-y-8">
       <div className="flex justify-between items-center">
-        <div className="text-3xl font-bold">GitFolio</div>
+        <h1 className="text-3xl font-bold">GitFolio</h1>
 
         {/* Toggle Buttons */}
         <div className="flex">

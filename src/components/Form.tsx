@@ -2,7 +2,7 @@ import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { availableSkills } from "../utils/skills";
 import { markdownGenerator } from "../utils/markdownGenerator";
 import type { Skill } from "../utils/markdownGenerator";
-import { X } from "lucide-react";
+import { Search, X } from "lucide-react";
 
 const Form = ({
   setMarkdown,
@@ -25,7 +25,7 @@ const Form = ({
     { name: "CSS3", iconPath: "css3/css3-original.svg" },
   ]);
   const [filteredSkills, setFilteredSkills] = useState(availableSkills);
-  const [searchQuery, SetSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [showStats, setShowStats] = useState(true);
   const [showMostUsedLanguage, setShowMostUsedLangauge] = useState(true);
   const [showStreaks, setShowStreaks] = useState(true);
@@ -81,86 +81,109 @@ const Form = ({
   ]);
 
   return (
-    <div className="space-y-8 w-full  h-auto md:h-[85vh]  border border-border rounded-radius p-4 md:w-1/2 overflow-scroll ">
-      <div className="space-y-1">
-        <label htmlFor="intro" className="labelStyle">
-          Intro
+    <section className="space-y-8 w-full h-auto md:h-[85vh] border border-border rounded-radius p-4 md:w-1/2 overflow-scroll">
+      {/* Introduction */}
+      <div className="space-y-2">
+        <label className="block" htmlFor="intro">
+          Introduction Message
         </label>
         <input
-          name="intro"
+          id="intro"
           type="text"
           className="inputStyle"
-          placeholder={intro}
+          value={intro}
+          placeholder="Hey! I'm Nabin Khanal."
           onChange={(e) => setIntro(e.target.value)}
+          maxLength={100}
         />
+        <p className="text-xs text-gray-500">{intro.length}/100 characters</p>
       </div>
 
-      <div className="space-y-1">
-        <label htmlFor="github-username" className="labelStyle">
+      {/* GitHub Username */}
+      <div className="space-y-2">
+        <label className="block" htmlFor="github-username">
           GitHub Username
         </label>
         <input
-          name="github-username"
+          id="github-username"
           type="text"
           className="inputStyle"
-          placeholder="nabsk911"
-          onChange={(e) => setUsername(e.target.value)}
+          value={username}
+          placeholder="your-github-username"
+          onChange={(e) =>
+            setUsername(e.target.value.replace(/[^a-zA-Z0-9-]/g, ""))
+          }
+          pattern="[a-zA-Z0-9-]+"
         />
+        <p className="text-xs text-gray-500">
+          Only letters, numbers, and hyphens allowed
+        </p>
       </div>
 
-      <div>
-        <label htmlFor="cover-url" className="labelStyle">
+      {/* Cover URL */}
+      <div className="space-y-2">
+        <label className="block" htmlFor="cover-url">
           Cover Image/GIF URL
         </label>
         <textarea
-          name="cover-url"
-          className="inputStyle resize-none overflow-scroll"
+          id="cover-url"
+          className="inputStyle resize-none"
           rows={3}
-          placeholder="https://media.giphy.com/media/lgTpcy4dkdUc0/giphy.gif"
+          value={coverURL}
+          placeholder="https://example.com/your-cover-image.gif"
           onChange={(e) => setCoverURl(e.target.value)}
         />
+        <p className="text-xs text-gray-500">
+          Tip: Use Giphy or Imgur for reliable hosting
+        </p>
       </div>
 
-      <div>
-        <label htmlFor="about-me" className="labelStyle">
+      {/* About Me */}
+      <div className="space-y-2">
+        <label className="block" htmlFor="about-me">
           About Me
         </label>
         <textarea
-          name="about-me"
+          id="about-me"
           className="inputStyle resize-none"
-          rows={5}
-          placeholder={aboutMe}
+          rows={4}
+          value={aboutMe}
+          placeholder="Tell visitors about yourself, your interests, and what you're working on..."
           onChange={(e) => setAboutMe(e.target.value)}
+          maxLength={500}
         />
+        <p className="text-xs text-gray-500">{aboutMe.length}/500 characters</p>
       </div>
 
-      <div>
-        <label className="labelStyle">GitHub Activities</label>
+      {/* GitHub Activities */}
+      <div className="space-y-2">
+        <label className="block">GitHub Activities</label>
+        <p className="text-sm text-gray-600">
+          Choose which GitHub statistics to display on your profile
+        </p>
         <div className="inputStyle flex gap-8 flex-wrap">
-          <label className="flex items-center cursor-pointer space-x-2 bg-background border border-border px-2 py-1 rounded-radius">
+          <label className="checkboxLabel">
             <input
               type="checkbox"
-              className="accent-background cursor-pointer"
+              className="accent-primary cursor-pointer w-4 h-4"
               checked={showStats}
               onChange={(e) => setShowStats(e.target.checked)}
             />
             <span>GitHub Stats</span>
           </label>
-
-          <label className="flex items-center cursor-pointer space-x-2 bg-background border border-border px-2 py-1 rounded-radius">
+          <label className="checkboxLabel">
             <input
               type="checkbox"
-              className="accent-background cursor-pointer"
+              className="accent-primary cursor-pointer w-4 h-4"
               checked={showMostUsedLanguage}
               onChange={(e) => setShowMostUsedLangauge(e.target.checked)}
             />
             <span>Most Used Languages</span>
           </label>
-
-          <label className="flex items-center cursor-pointer space-x-2 bg-background border border-border px-2 py-1 rounded-radius">
+          <label className="checkboxLabel">
             <input
               type="checkbox"
-              className="accent-background cursor-pointer"
+              className="accent-primary cursor-pointer w-4 h-4"
               checked={showStreaks}
               onChange={(e) => setShowStreaks(e.target.checked)}
             />
@@ -169,15 +192,15 @@ const Form = ({
         </div>
       </div>
 
-      <div className="space-y-1 relative">
-        <label htmlFor="skills" className="labelStyle">
-          Technical Skills
-        </label>
+      {/* Skills */}
+      <div className="space-y-2 relative">
+        <label className="block">Technical Skills</label>
+        {/* Selected Skills */}
         <div className="inputStyle">
           {skills.map((skill) => (
             <div
               key={skill.iconPath}
-              className="inline-flex space-x-2  m-2 bg-background border border-border px-2 py-1 rounded-radius"
+              className="inline-flex space-x-2 m-2 bg-background border border-border px-2 py-1 rounded-radius"
             >
               <span>{skill.name}</span>
               <X
@@ -190,39 +213,48 @@ const Form = ({
           ))}
         </div>
 
+        {/* Skill Search */}
         <div className="max-h-80 min:h-content overflow-scroll inputStyle relative">
-          <div className=" bg-input sticky -top-2 py-2">
-            <input
-              type="text"
-              className="inputStyle text-foreground"
-              placeholder="Search Skills"
-              value={searchQuery}
-              onChange={(e) => SetSearchQuery(e.target.value)}
-            />
+          <div className="bg-input sticky -top-2 py-2">
+            <div className="relative">
+              <Search
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-placeholder"
+                size={16}
+              />
+              <input
+                type="text"
+                className="w-full px-3 py-2 border bg-input ring-ring border-border rounded-radius  placeholder-placeholder text-foreground pl-8"
+                placeholder="Search skills (e.g., React, Python, Docker...)"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
           </div>
+
+          {/* Filtered Skills */}
           {Object.keys(filteredSkills).length > 0 ? (
             Object.entries(filteredSkills).map(([category, skillList]) => (
-              <div key={category} className="mb-2">
+              <section key={category} className="mb-2">
                 <p className="font-semibold text-sm">{category}</p>
                 <div className="flex flex-wrap gap-2 mt-1">
                   {skillList.map((skill) => (
                     <label
                       key={skill.iconPath}
-                      className="flex items-center cursor-pointer  space-x-2 bg-input border border-border py-1 px-2 rounded-radius"
+                      className="flex items-center cursor-pointer space-x-2 bg-input border border-border py-1 px-2 rounded-radius"
                     >
                       <input
                         type="checkbox"
-                        className="accent-background  cursor-pointer"
+                        className="accent-primary cursor-pointer"
                         checked={skills.some(
                           (s) => s.iconPath === skill.iconPath
                         )}
                         onChange={() => toggleSkill(skill)}
-                      />{" "}
+                      />
                       <span>{skill.name}</span>
                     </label>
                   ))}
                 </div>
-              </div>
+              </section>
             ))
           ) : (
             <p className="text-sm text-gray-500 mt-1">
@@ -231,7 +263,7 @@ const Form = ({
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
