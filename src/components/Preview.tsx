@@ -4,7 +4,7 @@ import CopyMD from "./CopyMD";
 
 const Preview = ({ markdown }: { markdown: undefined | string }) => {
   return (
-    <div className="w-full md:w-1/2 h-auto md:h-[85vh] border border-border rounded-radius overflow-scroll">
+    <div className="w-full md:w-1/2 h-auto md:h-[85vh] border border-border rounded-radius overflow-y-scroll">
       <div className="bg-background flex justify-between items-center sticky top-0 border-b-2 border-border pt-2 px-4 font-semibold text-lg">
         <p className="py-3">Preview</p>
         <CopyMD markdown={markdown} />

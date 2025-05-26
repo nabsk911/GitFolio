@@ -85,7 +85,7 @@ const Form = ({
   ]);
 
   return (
-    <section className="space-y-8 w-full h-auto md:h-[85vh] border border-border rounded-radius p-4 md:w-1/2 overflow-scroll">
+    <section className="space-y-8 w-full h-auto md:h-[85vh] border border-border rounded-radius p-4 md:w-1/2 overflow-y-scroll">
       {/* Introduction */}
       <div className="space-y-2">
         <label className="block" htmlFor="intro">
@@ -220,7 +220,7 @@ const Form = ({
         </div>
 
         {/* Skill Search */}
-        <div className="max-h-80 min:h-content overflow-scroll inputStyle relative">
+        <div className="max-h-80 min:h-content overflow-y-scroll inputStyle relative">
           <div className="bg-input sticky -top-2 py-2">
             <div className="relative">
               <Search
