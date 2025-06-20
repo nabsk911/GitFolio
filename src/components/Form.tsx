@@ -22,11 +22,11 @@ const Form = ({
 -  System programming with C`
   );
   const [skills, setSkills] = useState<Skill[]>([
-    { name: "React", iconPath: "react/react-original.svg" },
-    { name: "TypeScript", iconPath: "typescript/typescript-original.svg" },
-    { name: "JavaScript", iconPath: "javascript/javascript-original.svg" },
-    { name: "HTML5", iconPath: "html5/html5-original.svg" },
-    { name: "CSS3", iconPath: "css3/css3-original.svg" },
+    { name: "React", iconString: "react" },
+    { name: "TypeScript", iconString: "ts" },
+    { name: "JavaScript", iconString: "js" },
+    { name: "HTML5", iconString: "html" },
+    { name: "CSS3", iconString: "css"},
   ]);
   const [filteredSkills, setFilteredSkills] = useState(availableSkills);
   const [searchQuery, setSearchQuery] = useState("");
@@ -53,9 +53,9 @@ const Form = ({
   }, [searchQuery]);
 
   const toggleSkill = (skill: Skill) => {
-    const exists = skills.some((s) => s.iconPath === skill.iconPath);
+    const exists = skills.some((s) => s.iconString === skill.iconString);
     if (exists) {
-      setSkills(skills.filter((s) => s.iconPath !== skill.iconPath));
+      setSkills(skills.filter((s) => s.iconString !== skill.iconString));
     } else {
       setSkills([...skills, skill]);
     }
@@ -205,7 +205,7 @@ const Form = ({
         <div className="inputStyle">
           {skills.map((skill) => (
             <div
-              key={skill.iconPath}
+              key={skill.iconString}
               className="inline-flex space-x-2 m-2 bg-background border border-border px-2 py-1 rounded-radius"
             >
               <span>{skill.name}</span>
@@ -245,14 +245,14 @@ const Form = ({
                 <div className="flex flex-wrap gap-2 mt-1">
                   {skillList.map((skill) => (
                     <label
-                      key={skill.iconPath}
+                      key={skill.iconString}
                       className="flex items-center cursor-pointer space-x-2 bg-input border border-border py-1 px-2 rounded-radius"
                     >
                       <input
                         type="checkbox"
                         className="accent-primary cursor-pointer"
                         checked={skills.some(
-                          (s) => s.iconPath === skill.iconPath
+                          (s) => s.iconString === skill.iconString
                         )}
                         onChange={() => toggleSkill(skill)}
                       />

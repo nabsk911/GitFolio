@@ -1,6 +1,6 @@
 export type Skill = {
   name: string;
-  iconPath: string;
+  iconString: string;
 };
 
 export const markdownGenerator = function (
@@ -27,13 +27,12 @@ export const markdownGenerator = function (
     md += `## About Me\n\n${aboutMe}\n\n`;
   }
 
-  if (skills && skills.length > 0) {
-    md += `## Technical Skills\n\n<p align="left">\n`;
-    skills.forEach(({ name, iconPath }) => {
-      md += `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${iconPath}" alt="${name}" title="${name}" width="40" height="40" />\n`;
-    });
-    md += `</p>\n\n`;
-  }
+if (skills && skills.length > 0) {
+  const iconStringArray = skills.map(({ iconString }) => iconString);
+
+  md += `## Technical Skills\n\n`;
+  md += `[![My Skills](https://skillicons.dev/icons?i=${iconStringArray.join(',')}&theme=dark)](https://skillicons.dev)\n\n`;
+}
 
   if (showMostUsedLanguage || showStats || showStreaks) {
     if (username) {
